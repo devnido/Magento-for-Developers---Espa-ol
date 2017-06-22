@@ -73,4 +73,51 @@ Magento es un sistema MVC basado en la configuración (**configuration-based**).
 
 En un sistema MVC basado en convenciones (**convention-based**), si quisieras agregar, digamos, un nuevo controlador o quizás un nuevo modelo, simplemente crearías el archivo/clase y el sistema lo reconocería automáticamente.
 
-En un sistema basado en la configuración, como Magento, además de agregar el nuevo archivo/clase al código base, a menudo es necesario explicar explícitamente al sistema acerca de la nueva clase o el nuevo grupo de clases. En Magento, cada módulo tiene un archivo denominado ``config.xml.`` Este archivo contiene toda la configuración relevante para un módulo de Magento. En tiempo de ejecución, todos estos archivos se cargan en un árbol de configuración grande.
+En un sistema basado en la configuración (**configuration-based**), como Magento, además de agregar el nuevo archivo/clase al código base, a menudo es necesario explicar explícitamente al sistema acerca de la nueva clase o el nuevo grupo de clases. En Magento, cada módulo tiene un archivo denominado ``config.xml.`` Este archivo contiene toda la configuración relevante para un módulo de Magento. En tiempo de ejecución, todos estos archivos se cargan en un árbol de configuración grande.
+
+Por ejemplo, ¿quieres usar Modelos en tu Módulo personalizado? Tendrás que agregar algún código a ``config.xml`` que le indique a Magento que quieres utilizar Modelos, así como el nombre de la clase base para todos tus Modelos.
+<code><pre> `<models>
+     <packagename>
+         <class>Package_Modulename_Model</class>
+     <packagename>
+ </models>`</pre></code>
+
+ Lo mismo ocurre con Helpers, Blocks, Routes for your Controllers, Event Handlers, y muchos más. Casi siempre que quieras aprovechar el poder del sistema Magento, tendrás que hacer algún cambio o adición a tu archivo de configuración.
+
+## Controlles
+
+En cualquier sistema PHP, el punto de entrada principal de PHP sigue siendo un archivo PHP. Magento no es diferente, y ese archivo es ``index.php``.
+
+Sin embargo, nunca escribas código en index.php. En un sistema MVC, index.php contendrá código/llamadas al código que hace lo siguiente:
+
+    1. Examinar la URL
+    2. Basado en un conjunto de reglas, convierte esta URL en una clase Controller y un método Action (denominado Routing)
+    3. Instancia la clase Controller y llama al método Action (llamado dispatching)
+
+Esto significa que el punto de entrada práctico en Magento (o cualquier sistema basado en MVC) es un método en un archivo Controller. Considere la siguiente URL:
+
+<pre><code>http://example.com/catalog/category/view/id/25</code></pre>
+
+Cada parte de la ruta después del nombre del servidor se analiza de la siguiente manera.
+
+### Front Name - ``catalog``
+
+ La primera parte de la URL se llama *front name*. Esto, más o menos, indica a magento en qué Módulo puede encontrar un Controlador. En el ejemplo anterior, el *front name* es *catalog*, que corresponde al Módulo ubicado en:
+
+ <pre><code>app/code/core/Mage/Catalog</code></pre>
+
+### Controller Name - ``category``
+
+La segunda parte de la URL le dice a Magento qué controlador debe usar. Cada módulo con controladores tiene una carpeta especial denominada 'controllers' que contiene todos los controladores de un módulo. En el ejemplo anterior, la categoría de la parte URL se traduce al archivo Controller
+
+<pre><code>app/code/core/Mage/Catalog/controllers/CategoryController.php</code></pre>
+
+La cual se verá así
+
+```php
+class Mage_Catalog_CategoryController extends Mage_Core_Controller_Front_Action
+{
+}
+```
+
+Todas las clases de los controladores de la aplicación Magento Cart extienden desde Mage_Core_Controller_Front_Action.
