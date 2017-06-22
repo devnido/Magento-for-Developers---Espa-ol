@@ -121,3 +121,53 @@ class Mage_Catalog_CategoryController extends Mage_Core_Controller_Front_Action
 ```
 
 Todas las clases *Controller* de la aplicación Magento Cart extienden desde Mage_Core_Controller_Front_Action.
+
+### Action Name - ``view``
+
+El tercero en nuestra URL es el nombre de la acción. En nuestro ejemplo, es la palabra "view". La palabra "view" se utiliza para crear el Action Method. Así, en nuestro ejemplo, "view" se convertiría en "viewAction"
+
+```php
+class Mage_Catalog_CategoryController extends Mage_Core_Controller_Front_Action
+{
+    public function viewAction()
+    {
+        //main entry point
+    }
+}
+```
+
+Las personas familiarizadas con Zend Framework reconocerán la nomenclatura.
+
+### Parameter/Value - ``id/25``
+
+Cualquier parte de la ruta después del nombre de la acción (action name) seran consideradas como variables GET de la forma key/value. Así, en nuestro ejemplo, el "id/25" significa que obtendrá una variable GET llamada "id", con un valor de "25".
+
+Como se mencionó anteriormente, si deseas que tu Módulo utilice Controladores, deberás configurarlos previamente. A continuación se muestra el bloque de configuración que habilita los Controladores del Módulo de ``catalog``
+
+<code><pre>`<frontend>
+    <routers>
+        <catalog>
+            <use>standard</use>
+            <args>
+                <module>Mage_Catalog</module>
+                <frontName>catalog</frontName>
+            </args>
+        </catalog>
+    </routers>
+</frontend>` </pre></code>
+
+No te preocupes demasiado por los detalles en este momento, pero observa el ``<frontName>catalog</frontName>``
+
+Esto es lo que enlaza un Módulo con el *frontname* de la URL. La mayoría de los Módulos del núcleo de Magento eligen un *frontname* que tenga el mismo nombre que sus Módulos, pero esto no es necesario.
+
+### Múltiples enrutamientos
+
+El enrutamiento descrito anteriormente es para la aplicación Magento cart (a menudo llamada el frontend). Si Magento no encuentra un Controller/Action válido para una URL, intenta de nuevo, esta vez utilizando un segundo conjunto de reglas de enrutamiento para la aplicación de administración. Si Magento no encuentra un **Admin** Controller/Action válido, utiliza un Controlador especial llamado ``Mage_Cms_IndexController``.
+
+El CMS Controller comprueba el sistema de gestión de contenido de Magento para ver si hay contenido que debe cargarse. Si encuentra alguno, lo cargará, de lo contrario se mostrará al usuario una página 404.
+
+Por ejemplo, la página principal de magento "index" utiliza el CMS Controller, que a menudo puede lanzar a los recién llegados a un bucle.
+
+
+
+## Carga de Modelos URI Basado en Contexto (Context-Based)
