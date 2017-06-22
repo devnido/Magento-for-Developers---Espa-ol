@@ -4,7 +4,7 @@
 
 Esta es una traducción personal de la guía para desarrolladres de Magento.
 
-Indice
+### Indice
 
 * [Parte 1 - Introducción a Magento](https://github.com/devnido/Magento-for-Developers-Spanish/tree/master/Parte-1)
 * [Parte 2 - Configuración de Magento](https://github.com/devnido/Magento-for-Developers-Spanish/tree/master/Parte-2)
