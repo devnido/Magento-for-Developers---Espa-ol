@@ -28,8 +28,8 @@ Este es el primero de una serie de artículos en los que vamos a realizar tour a
 * Helpers
 * Layouts
 * Observers
-* Sobre-escritura de Clases
-* Wrap up
+* Sustitución de Clases
+* Conclusión
 
 Or for the more visually oriented [Magento_MVC.pdf](http://devdocs.magento.com/common/images/m1x/Magento_MVC.pdf/).
 
@@ -395,3 +395,100 @@ Entonces ahora sí, podríamos llamar a `$this->getChildHtml('foobar');` dentro 
 
 
 ## Observers
+
+Como cualquier buen sistema orientado a objetos, Magento implementa un patrón de evento/observador para que los usuarios finales puedan utilizarlo. Como ciertas acciones ocurren durante una solicitud de página (un Modelo se guarda, un usuario inicia sesión, etc.), Magento emitirá una señal de evento.
+
+Al crear tus propios Módulos, puedes "escuchar" estos eventos. Digamos que quisieras obtener un correo electrónico cada vez que un usuario inicia sesión en la tienda. Entonces, para ello deberías escuchar el evento "customer_login" (configurado en config.xml)
+
+```xml
+<events>
+    <customer_login>
+        <observers>
+            <unique_name>
+                <type>singleton</type>
+                <class>mymodule/observer</class>
+                <method>iSpyWithMyLittleEye</method>
+            </unique_name>
+        </observers>
+    </customer_login>
+</events>
+```
+
+Y luego escribir algún código que se ejecute cada vez que un usuario ha iniciado sesión:
+
+```php
+class Packagename_Mymodule_Model_Observer
+{
+    public function iSpyWithMyLittleEye($observer)
+    {
+        $data = $observer->getData();
+        //code to check observer data for our user,
+        //and take some action goes here
+    }
+}
+```
+
+
+
+## Sustitución de Clases
+
+Por último, el sistema Magento ofrece la posibilidad de reemplazar las clases Model, Helper y Block de los Módulos nativos por tus propias clases. Esta es una característica similar a "Duck Typing" o "Monkey Patching" en un lenguaje como Ruby o Python.
+
+Un ejemplo para ayudarte a entender. La clase Modelo para un producto es `Mage_Catalog_Model_Product`.
+
+```php
+$product = Mage::getModel('catalog/product');
+```
+
+Este es un patrón *Factory*
+
+Lo que el sistema de Susutición de Clases de Magento hace es permitir decirle al sistema
+
+
+```
+"Hey, cuando alguien solicite catalog/product, en lugar de darles un Mage_Catalog_Model_Product,
+entregales un Packagename_Modulename_Model_Foobazproduct".
+```
+
+Entonces, si lo deseas, tu clase Packagename_Modulename_Model_Foobazproduct puede extender de la clase product original
+
+```php
+class Packagename_Modulename_Model_Foobazproduct extends Mage_Catalog_Model_Product
+{
+}
+```
+
+Lo cual te permitirá cambiar el comportamiento de cualquier método de la clase, pero mantener la funcionalidad de los métodos existentes.
+
+```php
+class Packagename_Modulename_Model_Foobazproduct extends Mage_Catalog_Model_Product
+{
+    public function validate()
+    {
+        //add custom validation functionality here
+        return $this;
+    }
+
+}
+```
+
+Como es de esperar, esta sustitución (o reescritura) se realiza en el archivo config.xml.
+
+```xml
+<models>
+    <!-- does the override for catalog/product-->
+    <catalog>
+        <rewrite>
+            <product>Packagename_Modulename_Model_Foobazproduct</product>
+        </rewrite>
+    </catalog>
+</models>
+```
+
+Una cosa que es importante tener en cuenta aquí es que las clases individuales en **tu** Módulo están reemplazando clases individuales en **otros** Módulos. Sin embargo, no está sustituyendo todo el Módulo. Esto te permite cambiar el comportamiento del método específico sin tener que preocuparte por lo que está haciendo el resto de los metodos de la clase.
+
+
+
+## Conclusión
+
+Esperamos que hayas disfrutado de este tour relámpago a través de algunas de las características que el sistema Magento eCommerce ofrece a los desarrolladores. Puede ser un poco abrumador al principio, especialmente si esta es tu primera experiencia con un sistema PHP moderno orientado a objetos. Si comienzas a sentirte frustrado, respira hondo, recuerda que esto es nuevo, y las cosas nuevas son difíciles, pero al final del día es sólo una forma diferente de codificar. Una vez que sobrepases la curva de aprendizaje, te sentirás reacio a volver a otros sistemas menos potentes.
