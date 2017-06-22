@@ -76,11 +76,13 @@ En un sistema MVC basado en convenciones (**convention-based**), si quisieras ag
 En un sistema basado en la configuración (**configuration-based**), como Magento, además de agregar el nuevo archivo/clase al código base, a menudo es necesario explicar explícitamente al sistema acerca de la nueva clase o el nuevo grupo de clases. En Magento, cada módulo tiene un archivo denominado ``config.xml.`` Este archivo contiene toda la configuración relevante para un módulo de Magento. En tiempo de ejecución, todos estos archivos se cargan en un árbol de configuración grande.
 
 Por ejemplo, ¿quieres usar Modelos en tu Módulo personalizado? Tendrás que agregar algún código a ``config.xml`` que le indique a Magento que quieres utilizar Modelos, así como el nombre de la clase base para todos tus Modelos.
-<code><pre> `<models>
-     <packagename>
-         <class>Package_Modulename_Model</class>
-     <packagename>
- </models>`</pre></code>
+```xml
+<models>
+    <packagename>
+        <class>Package_Modulename_Model</class>
+    <packagename>
+</models>
+ ```
 
  Lo mismo ocurre con Helpers, Blocks, Routes for your Controllers, Event Handlers, y muchos más. Casi siempre que quieras aprovechar el poder del sistema Magento, tendrás que hacer algún cambio o adición a tu archivo de configuración.
 
@@ -144,7 +146,8 @@ Cualquier parte de la ruta después del nombre de la acción (action name) seran
 
 Como se mencionó anteriormente, si deseas que tu Módulo utilice Controladores, deberás configurarlos previamente. A continuación se muestra el bloque de configuración que habilita los Controladores del Módulo de ``catalog``
 
-<code><pre>`<frontend>
+```xml
+<frontend>
     <routers>
         <catalog>
             <use>standard</use>
@@ -154,7 +157,8 @@ Como se mencionó anteriormente, si deseas que tu Módulo utilice Controladores,
             </args>
         </catalog>
     </routers>
-</frontend>` </pre></code>
+</frontend>
+```
 
 No te preocupes demasiado por los detalles en este momento, pero observa el ``<frontName>catalog</frontName>``
 
