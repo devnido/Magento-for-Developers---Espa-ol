@@ -1,5 +1,5 @@
 # Magento para Desarrolladores
-## Parte 1 - Introducción to Magento
+## Parte 1 - Introducción a Magento
 
 #### Otros articulos en esta serie
 
@@ -86,7 +86,10 @@ Por ejemplo, ¿quieres usar Modelos en tu Módulo personalizado? Tendrás que ag
 
  Lo mismo ocurre con Helpers, Blocks, Routes for your Controllers, Event Handlers, y muchos más. Casi siempre que quieras aprovechar el poder del sistema Magento, tendrás que hacer algún cambio o adición a tu archivo de configuración.
 
-## Controlles
+
+
+
+## Controllers
 
 En cualquier sistema PHP, el punto de entrada principal de PHP sigue siendo un archivo PHP. Magento no es diferente, y ese archivo es ``index.php``.
 
@@ -175,3 +178,220 @@ Por ejemplo, la página principal de magento "index" utiliza el CMS Controller, 
 
 
 ## Carga de Modelos URI Basado en Contexto (Context-Based)
+
+Ahora que estamos en el punto de entrada del Action Method, queremos comenzar a instanciar las clases que hacen las cosas. Magento ofrece una forma especial de instanciar Models, Helpers y Blocks usando métodos estáticos los cuales están definidos en la clase global Mage. Por ejemplo:
+
+```php
+Mage::getModel('catalog/product');
+Mage::helper('catalog/product');
+```
+
+El string 'catalog/product' se denomina un nombre de clase agrupado (Grouped Class Name). También se llama a menudo URI. La primera parte de cualquier nombre de clase agrupado (en este caso, catalog) se utiliza para buscar en qué Módulo reside la clase. La segunda parte ("product") se utiliza para determinar qué clase debe cargarse.
+
+Por lo tanto, en ambos ejemplos anteriores, 'catalog' determina el Módulo `app/code/core/Mage/Catalog`.
+
+Lo que significa que nuestro nombre de clase comenzará con `Mage_Catalog`.
+
+A continuación, se agrega `product` para obtener el nombre final de la clase
+
+```php
+Mage::getModel('catalog/product');
+Mage_Catalog_Model_Product
+
+Mage::helper('catalog/product');
+Mage_Catalog_Helper_Product
+```
+
+Estas reglas están vinculadas a cada módulo en su archivo de configuración. Cuando creas tu propio Módulo personalizado, tendrá tus propios nombres de clase agrupados (también llamados Grupos de Clases) para utilizar `Mage::getModel('myspecialprefix/modelname');`.
+
+No es necesario utilizar nombres de clase agrupados (Grouped Class Name) para instanciar las clases. Sin embargo, como veremos más adelante, existen ciertas ventajas al hacerlo.
+
+
+
+## Models
+
+Magento, al igual que la mayoría de los frameworks actuales, ofrece un sistema de asignación de objetos relacional (Object Relational Mapping, ORM). Utilizando ORMs te olvidas de escribir SQL y te permiten manipular un almacén de datos puramente a través del código PHP. Por ejemplo:
+
+```php
+$model = Mage::getModel('catalog/product')->load(27);
+$price = $model->getPrice();
+$price += 5;
+$model->setPrice($price)->setSku('SK83293432');
+$model->save();
+```
+
+En el ejemplo anterior estamos llamando a los métodos "getPrice" y "setPrice" en nuestro product. Sin embargo, la clase Mage_Catalog_Model_Product no tiene métodos con estos nombres. Esto se debe a que el ORM de Magento usa el método mágico *__call* de PHP para implementar getters y setters.
+
+Llamando al método `$product->getPrice();` obtendras el atributo "price" del Modelo.
+
+Llamando ` $product->setPrice();` setearemos el atributo "price" del Modelo.
+
+Con esto asumiremos que la clase Model no debería tiener los métodos llamados getPrice o setPrice. Si los tuviera, los métodos mágicos serán anulados. Si tienes interes en como están implementados estos métodos, puedes mirar la clase *Varien_Object*, de la cual heredan todos los Models.
+
+Si quieres obtener todos los datos disponibles en un Modelo, lo puedes hacer con `$product->getData();` Obtendras un array con todos los atributos.
+
+También podrás ver que es posible encadenar varias llamadas al método set: `$model->setPrice($price)->setSku('SK83293432');`
+
+Esto se debe a que cada método "set" devuelve una instancia del Modelo. Este es un patrón que verás en gran parte del código base de Magento.
+
+El ORM de Magento también contiene una forma de consultar varios objetos a través de una interfaz de colecciones. La sentencia a continuación nos devolverá una colección de todos los productos que cuestan $5.00
+
+```php
+$products_collection = Mage::getModel('catalog/product')
+->getCollection()
+->addAttributeToSelect('*')
+->addFieldToFilter('price','5.00');
+```
+
+Una vez más, verás que Magento implementó una interfaz de encadenamiento. Las colecciones utilizan la biblioteca estándar de PHP para implementar objetos que tienen atributos de tipo array.
+
+```php
+foreach($products_collection as $product)
+{
+    echo $product->getName();
+}
+```
+
+Puedes preguntarte para qué es el método "addAttributeToSelect". Magento tiene dos tipos de objetos Modelo. El primero es "Un Objeto, Una Tabla" el tradicional Modelo del tipo Active Record. Al instanciar estos Modelos, todos los atributos se seleccionan automáticamente.
+
+El segundo tipo es un modelo definido como Entidad Atributo Valor (EAV). Los modelos de EAV distribuyen datos a través de varias tablas diferentes en la base de datos. Esto le da a Magento la flexibilidad de ofrecer un sistema de gestión para los atributos de los productos flexible sin tener que hacer un cambio en el esquema d elas tablas cada vez que quieras agregar un nuevo atributo. Al crear una colección de objetos EAV, Magento es conservador en el número de columnas que consultará, por lo que puedes utilizar "addAttributeToSelect" para obtener las columnas que quieras o `addAttributeToSelect ('*')` para obtener todas las columnas.
+
+
+
+## Helpers
+
+Los Helpers (Ayudantes) de Magento contienen métodos de utilidad que te permitirán realizar tareas comunes en objetos y variables. Por ejemplo:
+
+```php
+$helper = Mage::helper('catalog');
+```
+
+Notarás que hemos dejado la segunda parte del nombre agrupado de la clase. Cada Módulo tiene una clase Helper Data. lo cual equivale a:
+
+```php
+$helper = Mage::helper('catalog/data');
+```
+
+La mayoría de los Helpers heredan de Mage_Core_Helper_Abstract, de donde obtienen varios métodos útiles por defecto.
+
+```php
+$translated_output =  $helper->__('Magento is Great'); //gettext style translations
+if($helper->isModuleOutputEnabled()): //is output for this module on or off?
+```
+
+
+
+## Layouts
+
+Por lo tanto, hemos visto Controllers, Models y Helpers. En un típico sistema PHP MVC, después de haber manipulado nuestros Modelos, tendriamos que:
+
+1. Establecer algunas variables para nuestra view
+2. El sistema cargaría un Layout HTML exterior por defecto
+3. Entonces el sistema cagaría nuestra vista dentro de ese Layout HTML exterior
+
+Sin embargo, si analizamos un método de acción (Action Method) típico en algún Controller de Magento, no veras nada de esto:
+
+```php
+/**
+ * View product gallery action
+ */
+public function galleryAction()
+{
+    if (!$this->_initProduct()) {
+        if (isset($_GET['store']) && !$this->getResponse()->isRedirect()) {
+            $this->_redirect('');
+        } elseif (!$this->getResponse()->isRedirect()) {
+            $this->_forward('noRoute');
+        }
+        return;
+    }
+    $this->loadLayout();
+    $this->renderLayout();
+}
+```
+En su lugar, la acción del controlador termina con dos llamadas
+
+```php
+$this->loadLayout();
+$this->renderLayout();
+```
+
+Por lo tanto, la "V" en Magento MVC ya difiere de lo que probablemente estás acostumbrado, ya que aquí es necesario explícitamente iniciar la representación del diseño.
+
+El Layout mismo también difiere. Un Layout en Magento es un objeto que contiene una colección anidada/árbol de objetos "Blocks". Cada objeto Block renderizará una parte específica del HTML. Los objetos Block hacen esto a través de una combinación de código PHP, e incluyendo archivos de Plantilla .phtml.
+
+Los objetos Blocks están hechos para interactuar con el sistema Magento y obtener datos de los Modelos, mientras que los archivos de plantilla phtml producirán el HTML necesario para una página.
+
+Por ejemplo, el Block encargado del encabezado de página `app/code/core/Mage/Page/Block/Html/Head.php` utiliza el archivo head.phtml ubicado en `page/html/head.phtml`.
+
+Otra forma de ver esto es que las clases Blocks son casi como pequeños mini-controladores, y los archivos .phtml son las vistas.
+
+Por defecto, cuando tu llamas a
+
+```php
+$this->loadLayout();
+$this->renderLayout();
+```
+
+Magento cargará un Layout con la estructura esqueleto del sitio. Alli estarán los Structure Blocks (Bloques de Estructura) para generar el `html`, `head` y `body`, así como también configurará el Layout HTML para una o varias columnas. Además, habrá algunos Content Blocks (Bloques de Contenido) para la navegación, el mensaje de bienvenida predeterminado, etc.
+
+"Estructura" y "Contenido" son designaciones arbitrarias en el sistema de Layout. Un bloque no sabe programáticamente si es estructura o contenido, pero es útil pensar en un bloque como uno u otro.
+
+Para agregar contenido a un Layout, necesitas decirle a Magento algo así como:
+
+```
+"Oye, Magento, agrega estos Bloques adicionales abajo del Bloque 'content' del esqueleto"
+```
+o
+
+```
+"Oye, Magento, agrega estos Bloques adicionales debajo del Bloque 'left column' del esqueleto"
+```
+
+Esto se puede escribir en código dentro de la Acción del Controllador de la siguiente forma
+
+```php
+public function indexAction()
+{
+    $this->loadLayout();
+    $block = $this->getLayout()->createBlock('adminhtml/system_account_edit')
+    $this->getLayout()->getBlock('content')->append($block);
+    $this->renderLayout();
+}
+```
+
+Pero más comúnmente (al menos en la aplicación frontend cart), es el uso del sistema XML Layout.
+
+```xml
+<catalog_category_default>
+    <reference name="left">
+        <block type="catalog/navigation" name="catalog.leftnav" after="currency" template="catalog/navigation/left.phtml"/>
+    </reference>
+</catalog_category_default>
+```
+
+Le estamos diciendo que en el Módulo `catalog`, en el Controlador `category`, en la Acción `default`, inserte el Bloque `catalog/navigation` dentro del Bloque Estructura `left`, usando la plantilla `catalog/navigation/left.phtml`.
+
+Otra cosa importante sobre los bloques. A menudo verás código en plantillas que se ve así:
+
+`$this->getChildHtml('order_items')`
+
+Así es como un bloque procesa un bloque anidado. Sin embargo, un bloque sólo puede representar un bloque secundario si el bloque secundario **se incluye como un Bloque anidado en el archivo XML del Layout**. En el ejemplo anterior, nuestro bloque de `catalog/navigation` no tiene bloques anidados. Esto significa que cualquier llamada a `$this->getChildHtml()` en `left.phtml` se mostrará en blanco.
+
+En caso contrario, si tuvieramos algo así:
+
+```xml
+<catalog_category_default>
+    <reference name="left">
+        <block type="catalog/navigation" name="catalog.leftnav" after="currency" template="catalog/navigation/left.phtml">
+            <block type="core/template" name="foobar" template="foo/baz/bar.phtml"/>
+        </block>
+    </reference>
+</catalog_category_default>
+```
+
+Entonces ahora sí, podríamos llamar a `$this->getChildHtml('foobar');` dentro de `left.phtml`
+
+
+
+## Observers
