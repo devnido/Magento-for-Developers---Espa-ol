@@ -3,14 +3,14 @@
 
 #### Otros articulos en esta serie
 
-* Parte 1 - Introducción a Magento
-* Parte 2 - Configuración de Magento
-* Parte 3 - Controllers en Magento
-* Parte 4 - Layouts, Blocks y Templates en Magento
-* Parte 5 - Models y ORM básicos en Magento
-* Parte 6 - Recursos de instalación en Magento
-* Parte 7 - ORM avanzados: Entidad Atributo Valor
-* Parte 8 - Varien Data Collections
+* [Parte 1 - Introducción a Magento](https://github.com/devnido/Magento-for-Developers-Spanish/tree/master/Parte-1)
+* [Parte 2 - Configuración de Magento](https://github.com/devnido/Magento-for-Developers-Spanish/tree/master/Parte-2)
+* [Parte 3 - Controllers en Magento](https://github.com/devnido/Magento-for-Developers-Spanish/tree/master/Parte-3)
+* [Parte 4 - Layouts, Blocks y Templates en Magento](https://github.com/devnido/Magento-for-Developers-Spanish/tree/master/Parte-4)
+* [Parte 5 - Models y ORM básicos en Magento](https://github.com/devnido/Magento-for-Developers-Spanish/tree/master/Parte-5)
+* [Parte 6 - Recursos de instalación en Magento](https://github.com/devnido/Magento-for-Developers-Spanish/tree/master/Parte-6)
+* [Parte 7 - ORM avanzados: Entidad Atributo Valor](https://github.com/devnido/Magento-for-Developers-Spanish/tree/master/Parte-7)
+* [Parte 8 - Varien Data Collections](https://github.com/devnido/Magento-for-Developers-Spanish/tree/master/Parte-8)
 
 ¿Que es Magento? Es la plataforma de comercio electrónico más potente del universo y está cambiando la cara del comercio electrónico para siempre. :-)
 
@@ -20,16 +20,16 @@ Este es el primero de una serie de artículos en los que vamos a realizar tour a
 
 #### En este articulo...
 
-* Código organizado en Módulos
-* MVC Básado en la Configuración (Configuration-Based)
-* Controllers
-* Carga de Modelos URI Basado en Contexto (Context-Based)
-* Models
-* Helpers
-* Layouts
-* Observers
-* Sustitución de Clases
-* Conclusión
+* [Código organizado en Módulos](#codigo-organizado-en-modulos)
+* [MVC Básado en la Configuración (Configuration-Based)](#mvc-basado-en-la-configuración--configuration-based-)
+* [Controllers](#controllers)
+* [Carga de Modelos URI Basado en Contexto (Context-Based)](
+* [Models](
+* [Helpers](
+* [Layouts](
+* [Observers](
+* [Sustitución de Clases](
+* [Conclusión](
 
 Or for the more visually oriented [Magento_MVC.pdf](http://devdocs.magento.com/common/images/m1x/Magento_MVC.pdf/).
 
