@@ -43,23 +43,23 @@ Magento organiza su código en módulos individuales. En una típica aplicación
 
 Por ejemplo, podrás encontrar Controllers, Models, Helpers, Blocks, etc. relacionados con la funcionalidad "checkout" de Magento en:
 
-<pre>app/code/core/Mage/Checkout</pre>
+<pre><code>app/code/core/Mage/Checkout</code></pre>
 
 Encontrarás Controllers, Models, Helpers, Blocks, etc. relacionados con la funcionalidad de "Google Checkout" de Magento en:
 
-<pre>app/code/core/Mage/GoogleCheckout</pre>
+<pre><code>app/code/core/Mage/GoogleCheckout</code></pre>
 
 ### Tu propio código fuente
 
 Si deseas personalizar o ampliar Magento, en lugar de editar directamente los archivos principales, o incluso si deseas colocar tus propios Controllers, Models, Helpers, Blocks, etc. junto al código de Magento, debes crear tus propios **Módulos** en:
 
-<pre>app/code/local/Package/Modulename</pre>
+<pre><code>app/code/local/Package/Modulename</code></pre>
 
 **Package** (también conocido como un **Namespace**) es un nombre único que identifica a tu empresa u organización. La intención es que cada miembro de la comunidad Magento mundial utilice su propio nombre de **Package** al crear módulos para evitar duplicidades con el código de otro usuario.
 
 Cuando crees un nuevo Módulo, debes informarle a Magento. Esto se hace agregando un archivo XML a la carpeta:
 
-<pre>app/etc/modules</pre>
+<pre><code>app/etc/modules</code></pre>
 
 Hay dos tipos de archivos en esta carpeta, el primero habilita un módulo individual y se denomina en la forma: `Package_Modulename.xml`
 
@@ -72,3 +72,5 @@ El segundo es un archivo que te permitirá habilitar múltiples Módulos de un P
 Magento es un sistema MVC basado en la configuración (**configuration-based**). La alternativa a esto sería un sistema MVC basado en convenciones (**convention-based**).
 
 En un sistema MVC basado en convenciones (**convention-based**), si quisieras agregar, digamos, un nuevo controlador o quizás un nuevo modelo, simplemente crearías el archivo/clase y el sistema lo reconocería automáticamente.
+
+En un sistema basado en la configuración, como Magento, además de agregar el nuevo archivo/clase al código base, a menudo es necesario explicar explícitamente al sistema acerca de la nueva clase o el nuevo grupo de clases. En Magento, cada módulo tiene un archivo denominado ``config.xml.`` Este archivo contiene toda la configuración relevante para un módulo de Magento. En tiempo de ejecución, todos estos archivos se cargan en un árbol de configuración grande.
