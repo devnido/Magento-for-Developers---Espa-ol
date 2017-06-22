@@ -20,16 +20,16 @@ Este es el primero de una serie de artículos en los que vamos a realizar tour a
 
 #### En este articulo...
 
-* [Código organizado en Módulos](#codigo-organizado-en-modulos)
-* [MVC Básado en la Configuración (Configuration-Based)](#mvc-basado-en-la-configuración--configuration-based-)
+* [Código organizado en Módulos](#código-organizado-en-módulos)
+* [MVC Básado en la Configuración (Configuration-Based)](#mvc-basado-en-la-configuración-configuration-based)
 * [Controllers](#controllers)
-* [Carga de Modelos URI Basado en Contexto (Context-Based)](
-* [Models](
-* [Helpers](
-* [Layouts](
-* [Observers](
-* [Sustitución de Clases](
-* [Conclusión](
+* [Carga de Modelos URI Basado en Contexto (Context-Based)](#carga-de-modelos-uri-basado-en-contexto-context-based)
+* [Models](#models)
+* [Helpers](#helpers)
+* [Layouts](#layouts)
+* [Observers](#observers)
+* [Sustitución de Clases](#sustitución-de-clases)
+* [Conclusión](#conclusión)
 
 Or for the more visually oriented [Magento_MVC.pdf](http://devdocs.magento.com/common/images/m1x/Magento_MVC.pdf/).
 
