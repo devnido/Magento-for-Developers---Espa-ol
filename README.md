@@ -90,9 +90,9 @@ En cualquier sistema PHP, el punto de entrada principal de PHP sigue siendo un a
 
 Sin embargo, nunca escribas código en index.php. En un sistema MVC, index.php contendrá código/llamadas al código que hace lo siguiente:
 
-    1. Examinar la URL
-    2. Basado en un conjunto de reglas, convierte esta URL en una clase Controller y un método Action (denominado Routing)
-    3. Instancia la clase Controller y llama al método Action (llamado dispatching)
+1. Examinar la URL
+2. Basado en un conjunto de reglas, convierte esta URL en una clase Controller y un método Action (denominado Routing)
+3. Instancia la clase Controller y llama al método Action (llamado dispatching)
 
 Esto significa que el punto de entrada práctico en Magento (o cualquier sistema basado en MVC) es un método en un archivo Controller. Considere la siguiente URL:
 
