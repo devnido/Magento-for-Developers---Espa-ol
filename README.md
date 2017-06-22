@@ -120,4 +120,4 @@ class Mage_Catalog_CategoryController extends Mage_Core_Controller_Front_Action
 }
 ```
 
-Todas las clases de los controladores de la aplicación Magento Cart extienden desde Mage_Core_Controller_Front_Action.
+Todas las clases *Controller* de la aplicación Magento Cart extienden desde Mage_Core_Controller_Front_Action.
