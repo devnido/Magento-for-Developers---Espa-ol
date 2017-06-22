@@ -21,7 +21,7 @@ Este es el primero de una serie de artículos en los que vamos a realizar tour a
 #### En este articulo...
 
 * Código organizado en Módulos
-* MVC Básado en Configuración (Configuration-Based)
+* MVC Básado en la Configuración (Configuration-Based)
 * Controllers
 * Carga de Modelos URI Basado en Contexto (Context-Based)
 * Models
@@ -33,14 +33,42 @@ Este es el primero de una serie de artículos en los que vamos a realizar tour a
 
 Or for the more visually oriented [Magento_MVC.pdf](http://devdocs.magento.com/common/images/m1x/Magento_MVC.pdf/).
 
+
+
 ## Código organizado en Módulos
 
 Magento organiza su código en módulos individuales. En una típica aplicación [Model-View-Controller (MVC)](https://es.wikipedia.org/wiki/modelo-vista-controlador), todos los Controladores estarán en una carpeta, todos los Modelos en otra, etc. En Magento, los archivos se agrupan basados en su funcionalidad, la cual se denomina **modules** (modulos) en Magento.
 
 ### Código fuente de Magento
 
-Por ejemplo, podrás encontrar Controllers, Models, Helpers, Blocks, etc. relacionados con la funcionalidad "checkout" de Magento en
+Por ejemplo, podrás encontrar Controllers, Models, Helpers, Blocks, etc. relacionados con la funcionalidad "checkout" de Magento en:
 
-<code>
-    app/code/core/Mage/Checkout
-</code>
+<pre>app/code/core/Mage/Checkout</pre>
+
+Encontrarás Controllers, Models, Helpers, Blocks, etc. relacionados con la funcionalidad de "Google Checkout" de Magento en:
+
+<pre>app/code/core/Mage/GoogleCheckout</pre>
+
+### Tu propio código fuente
+
+Si deseas personalizar o ampliar Magento, en lugar de editar directamente los archivos principales, o incluso si deseas colocar tus propios Controllers, Models, Helpers, Blocks, etc. junto al código de Magento, debes crear tus propios **Módulos** en:
+
+<pre>app/code/local/Package/Modulename</pre>
+
+**Package** (también conocido como un **Namespace**) es un nombre único que identifica a tu empresa u organización. La intención es que cada miembro de la comunidad Magento mundial utilice su propio nombre de **Package** al crear módulos para evitar duplicidades con el código de otro usuario.
+
+Cuando crees un nuevo Módulo, debes informarle a Magento. Esto se hace agregando un archivo XML a la carpeta:
+
+<pre>app/etc/modules</pre>
+
+Hay dos tipos de archivos en esta carpeta, el primero habilita un módulo individual y se denomina en la forma: `Package_Modulename.xml`
+
+El segundo es un archivo que te permitirá habilitar múltiples Módulos de un Package/Namespace, y se llama en la forma: `Package_All.xml`. Ten en cuenta que esto sólo es utilizado por el nucleo de Magento con el archivo `Mage_All.xml`. **No se recomienda** habilitar varios módulos en un solo archivo, ya que esto rompe la modularidad de Magento y los módulos.
+
+
+
+## MVC Basado en la Configuración (Configuration-Based)
+
+Magento es un sistema MVC basado en la configuración (**configuration-based**). La alternativa a esto sería un sistema MVC basado en convenciones (**convention-based**).
+
+En un sistema MVC basado en convenciones (**convention-based**), si quisieras agregar, digamos, un nuevo controlador o quizás un nuevo modelo, simplemente crearías el archivo/clase y el sistema lo reconocería automáticamente.
