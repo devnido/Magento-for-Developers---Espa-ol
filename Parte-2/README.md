@@ -92,8 +92,8 @@ Por último, `Magentotutorial_Configviewer.xml` debe contener el siguiente códi
 Eso es. Ahora tienes un módulo que no hará nada, pero que Magento reconocerá como tal. Para asegurarte de que has hecho las cosas bien, haz lo siguiente:
 
 1. Borra la caché de Magento
-2. En el Panel de Control de Magento, dirigete a System->Configuration->Advanced
-3. En el panel "Disable modules output" busca Magentotutorial_Configviewer
+2. En el Panel de Control de Magento, dirigete a **System->Configuration->Advanced**
+3. En el panel "Disable modules output" busca `Magentotutorial_Configviewer`
 
 Si lo encuentras, ¡Felicidades, has creado tu primer módulo de Magento!
 
@@ -128,7 +128,7 @@ Primero, vamos a agregar la siguiente sección `<global>` a nuestro archivo conf
 
 A continuación, crea un archivo en
 
-`Magentotutorial/Configviewer/Model/Observer.php`
+<pre><code>Magentotutorial/Configviewer/Model/Observer.php</code></pre>
 
 Y pega el siguiente código dentro
 
