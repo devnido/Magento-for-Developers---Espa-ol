@@ -56,11 +56,11 @@ app/code/local/Magentotutorial/Configviewer/sql
 
 No necesitarás todas estas carpetas para cada módulo, pero crearlas todas ahora es una buena idea.
 
-A continuación, hay dos archivos que necesitarás crear. El primero, `config.xml`, va en la carpeta que acaba de crear.
+A continuación, hay dos archivos que necesitarás crear. El primero, `config.xml`, va en la carpeta `etc` que acabas de crear.
 
 El segundo archivo debe crearse en la siguiente ubicación
 
-<pre><code>app/etc/modules/Magentotutorial_Configviewer.xml</code><pre>
+<pre><code>app/etc/modules/Magentotutorial_Configviewer.xml</code></pre>
 
 La convención de nombres para estos archivos es `Packagename_Modulename.xml`.
 
