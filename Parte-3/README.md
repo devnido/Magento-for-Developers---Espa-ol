@@ -16,13 +16,13 @@ La arquitectura Model-View-Controller (MVC) remonta sus orígenes al lenguaje de
 
 La arquitectura de la mayoría de los Frameworks MVC de PHP se vé algo [así](http://alanstorm.com/2009/img/magento-book/php-mvc.png)
 
-1. Una URL es interceptada por un solo archivo PHP (generalmente llamado un controlador frontal).
-2. Este archivo PHP examinará la dirección URL y derivará un nombre de controlador y un nombre de acción (un proceso que se denomina enrutamiento).
-3. El controlador derivado es instanciado.
-4. El nombre del método que coincide con el nombre de la acción derivada se llama en el controlador.
-5. Este método de acción instanciará y llamará a métodos en modelos, dependiendo de las variables de solicitud.
-6. El método de acción también preparará una estructura de datos de información. Esta estructura de datos se transmite a la vista.
-7. La vista entonces procesa HTML, utilizando la información en la estructura de datos que ha recibido del controlador.
+1. Una URL es interceptada por un solo archivo PHP (generalmente llamado un `FrontController`).
+2. Este archivo PHP examinará la dirección URL para derivarla a un **Controlador** y una **Acción** (un proceso que se denomina enrutamiento).
+3. El **Controlador** derivado es instanciado.
+4. El nombre del método que coincide con el nombre de la **Acción** derivada se llama dentro del controlador.
+5. Este método **Acción** instanciará y llamará a métodos de modelos, dependiendo de las variables de solicitud.
+6. El método de **Acción** también preparará una estructura de datos de información. Esta estructura de datos se transmite a la vista.
+7. La vista renderiza el HTML, utilizando la información en la estructura de datos que ha recibido del **Controlador**.
 
 Si bien este patrón fue un gran paso adelante desde el patrón "cada archivo php es una página" establecido desde el principio, para algunos ingenieros de software, sigue siendo un hack feo. Las quejas más comunes son:
 
@@ -37,8 +37,8 @@ Como probablemente has adivinado, el equipo de Magento comparte esta visión del
 2. Este archivo PHP instancia una aplicación Magento.
 3. La aplicación Magento instancia un objeto Front Controller.
 4. Front Controller instancia cualquier número de objetos de enrutador (especificado en configuración global).
-5. Los routers comprueban la URL de la solicitud para un "match".
-6. Si se encuentra una coincidencia, se derivan un controlador de acción y una acción.
+5. Los enrutador comprueban la URL de la solicitud hasta obtener un "match".
+6. Si se encuentra una coincidencia, se derivan un controlador y una acción.
 7. El controlador de acciones se instancia y se llama al nombre del método que coincide con el nombre de la acción.
 8. Este método de acción instanciará y llamará a métodos en modelos, dependiendo de la solicitud.
 9. Este controlador de acción instanciará entonces un objeto de diseño.
@@ -47,12 +47,8 @@ Como probablemente has adivinado, el equipo de Magento comparte esta visión del
 12. Cada bloque tiene un archivo de plantilla correspondiente. Los bloques contienen la lógica de PHP, las plantillas contienen HTML y código de salida de PHP.
 13. Los bloques se refieren directamente a los modelos para sus datos. En otras palabras, el controlador de acciones no les pasa una estructura de datos.
 
-Con el tiempo tocaremos cada parte de esta solicitud, pero por ahora estamos interesados en la sección Controlador frontal -> Routers -> Action Controller.
-
-
-
-
-
+Mas adelante tocaremos cada parte de esta solicitud, pero por ahora estamos interesados en la sección **Front Controller -> Routers -> Action Controller**.
+-------------------------------
 ## Hola mundo
 
 Basta de teoría, es hora de Hello World. Iban a
