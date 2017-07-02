@@ -48,6 +48,8 @@ Como probablemente has adivinado, el equipo de Magento comparte esta visión del
 13. Los bloques se refieren directamente a los modelos para sus datos. En otras palabras, el controlador de acciones no les pasa una estructura de datos.
 
 Mas adelante tocaremos cada parte de esta solicitud, pero por ahora estamos interesados en la sección **Front Controller -> Routers -> Action Controller**.
+
+
 -------------------------------
 ## Hola mundo
 
