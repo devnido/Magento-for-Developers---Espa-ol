@@ -168,18 +168,13 @@ Y pega el siguiente código dentro
 
 Eso es. Borra la caché de Magento de nuevo y luego carga cualquier URL de Magento con la Query String `showConfig=true`
 
-<code><pre>http://magento.example.com/?showConfig=true</pre></code>
-
-
-
+<pre><code>http://magento.example.com/?showConfig=true</code></pre>
 
 ## ¿Qué estoy viendo?
 
 Lo que ves es archivo XML gigante que describe el estado de tu sistema Magento. Enumera todos los módulos, modelos, clases, escuchas de los eventos o casi cualquier cosa que podrías pensar.
 
 Por ejemplo, considera el archivo config.xml que creaste anteriormente. Si buscas el texto `Configviewer_Model_Observer` en el archivo XML en tu navegador, encontrarás su clase en la lista. El archivo config.xml de cada módulo es analizado por Magento e incluido en la configuración global.
-
-
 
 ##¿Porqué me importa?
 
