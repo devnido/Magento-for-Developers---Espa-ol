@@ -172,9 +172,9 @@ Eso es. Borra la caché de Magento de nuevo y luego carga cualquier URL de Magen
 
 ## ¿Qué estoy viendo?
 
-Lo que ves es archivo XML gigante que describe el estado de tu sistema Magento. Enumera todos los módulos, modelos, clases, escuchas de los eventos o casi cualquier cosa que podrías pensar.
+Lo que ves es un archivo XML gigante que describe el estado de tu sistema Magento. Enumera todos los módulos, modelos, clases, event listener o casi cualquier cosa que podrías pensar.
 
-Por ejemplo, considera el archivo config.xml que creaste anteriormente. Si buscas el texto `Configviewer_Model_Observer` en el archivo XML en tu navegador, encontrarás su clase en la lista. El archivo config.xml de cada módulo es analizado por Magento e incluido en la configuración global.
+Por ejemplo, considera el archivo `config.xml` que creaste anteriormente. Si buscas el texto `Configviewer_Model_Observer` en el archivo XML en tu navegador, encontrarás su clase en la lista. El archivo `config.xml` de cada módulo es analizado por Magento e incluido en la configuración global.
 
 ##¿Porqué me importa?
 
@@ -197,7 +197,7 @@ En palabras simple, el metodo estático del Helper hará:
 1. Buscar en la configuración la sección <helpers/>
 2. Dentro de <helpers/>, buscará la sección <sales/>
 3. En la sección <sales/> buscará la sección <class/>
-4. Añadirá la parte después de la barra inclinada el valor que se encuentra en #3 (Faltan los `datos` en este caso)
+4. Añadirá la parte posterior a la barra inclinada "/" el valor que se encuentra en #3 (Faltan los `datos` en este caso)
 5. Instanciar la clase que se encuentra en #4 (Mage_Sales_Helper_Data)
 
 
