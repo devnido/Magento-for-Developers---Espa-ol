@@ -76,7 +76,7 @@ El archivo `config.xml` debe contener el siguiente código XML. Por ahora no te 
 </config>
 ```
 
-Por último, Magentotutorial_Configviewer.xml debe contener el siguiente xml.
+Por último, `Magentotutorial_Configviewer.xml` debe contener el siguiente código.
 
 ```xml
 <config>
@@ -103,9 +103,9 @@ Por supuesto, este módulo todavía no hace nada. Cuando hayamos terminado, nues
 
 1. Comprobar la existencia de una variable Query String llamada "showConfig"
 2. Si "showConfig" existe, mostrará nuestra configuración de Magento y detendrá la ejecución normal
-3. Comprobar la existencia de una variable Query String adicional, "showConfigFormat" que nos permita especificar como salida texto plano o XML.
+3. Comprobar la existencia de una variable Query String adicional, "showConfigFormat" que nos permitirá especificar el formato de salida, ya sea texto plano o XML.
 
-Primero, vamos a agregar la siguiente sección <global> a nuestro archivo config.xml.
+Primero, vamos a agregar la siguiente sección `<global>` a nuestro archivo config.xml.
 
 ```xml
 <config>
@@ -128,7 +128,7 @@ Primero, vamos a agregar la siguiente sección <global> a nuestro archivo config
 
 A continuación, crea un archivo en
 
-<code><pre>Magentotutorial/Configviewer/Model/Observer.php</pre></code>
+`Magentotutorial/Configviewer/Model/Observer.php`
 
 Y pega el siguiente código dentro
 
