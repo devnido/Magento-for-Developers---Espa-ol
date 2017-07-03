@@ -140,18 +140,14 @@ Hay una cita famosa sobre la informática, a menudo atribuida a Phil Karlton:
 
     "Sólo hay dos cosas difíciles en la informática: la invalidación de caché y el nombre de las cosas"
 
-Magento, al igual que todos los grandes sistemas, sufre el problema de nombrar en espadas. Encontrarás que hay muchos lugares en la configuración global, y el sistema en general, donde las convenciones de nomenclatura parecen poco intuitivas o incluso ambiguas. Este es uno de esos lugares. A veces, la etiqueta <routers> incluirá información de configuración sobre enrutadores, otras veces incluirá información de configuración sobre los objetos del enrutador real que hacen el enrutamiento. Esto va a parecer contra intuitivo al principio, pero a medida que empiece a trabajar con Magento cada vez más, comenzará a entender su visión del mundo un poco mejor. (O, en las palabras de Han Solo, "Hey, confía en mí!").
+Magento, al igual que todos los grandes sistemas, sufre el problema de nombrar en espadas. Encontrarás que hay muchos lugares en la configuración global, y el sistema en general, donde las convenciones de nomenclatura parecen poco intuitivas o incluso ambiguas. Este es uno de esos lugares. A veces, la etiqueta `<routers>` incluirá información de configuración sobre enrutadores, otras veces incluirá información de configuración sobre los objetos del enrutador real que hacen el enrutamiento. Esto va a parecer contra intuitivo al principio, pero a medida que empieces a trabajar con Magento cada vez más, comenzarás a entender su visión del mundo un poco mejor. (O, en las palabras de Han Solo, "Hey, confía en mí!").
 
 ### ¿Que es `<frontName>`?
 
 Cuando un enrutador analiza una URL, se separa como sigue
-
-<code><pre>http://example.com/frontName/actionControllerName/actionMethod/</pre></code>
-
+<pre><code>http://example.com/frontName/actionControllerName/actionMethod/</code></pre>
 Por lo tanto, al definir un valor de "hello world" en las etiquetas de <front Name>, le decimos a Magento que queremos que el sistema responda a las URLs en forma de
-
-<code><pre>`http://example.com/helloworld/*`</pre></code>
-
+<pre><code>`http://example.com/helloworld/*`</code></pre>
 Muchos desarrolladores nuevos en Magento confunden este nombre con el objeto Front Controller. No són la misma cosa. El frontName pertenece únicamente al encaminamiento.
 
 ### ¿Para qué sirve la etiqueta <hello world>?
