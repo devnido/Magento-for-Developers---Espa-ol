@@ -146,13 +146,13 @@ Magento, al igual que todos los grandes sistemas, sufre el problema de nombrar e
 
 Cuando un enrutador analiza una URL, se separa como sigue
 <pre><code>http://example.com/frontName/actionControllerName/actionMethod/</code></pre>
-Por lo tanto, al definir un valor de "hello world" en las etiquetas de <front Name>, le decimos a Magento que queremos que el sistema responda a las URLs en forma de
+Por lo tanto, al definir un valor de "hello world" en las etiquetas de `<frontName>`, le decimos a Magento que queremos que el sistema responda a las URLs en forma de
 <pre><code>`http://example.com/helloworld/*`</code></pre>
-Muchos desarrolladores nuevos en Magento confunden este nombre con el objeto Front Controller. No són la misma cosa. El frontName pertenece únicamente al encaminamiento.
+Muchos desarrolladores nuevos en Magento confunden este nombre con el objeto Front Controller. No són la misma cosa. El *frontName* pertenece únicamente al enrutamiento.
 
-### ¿Para qué sirve la etiqueta <hello world>?
+### ¿Para qué sirve la etiqueta `<helloworld>`?
 
-Esta etiqueta debe ser la versión en minúscula de su nombre de módulo. Nuestro nombre del módulo es Helloworld, esta etiqueta es helloworld. Técnicamente esta etiqueta define el *nombre de nuestra ruta*
+Esta etiqueta debe ser la versión en minúscula del nombre del módulo. Nuestro nombre del módulo es **Helloworld**, esta etiqueta es *helloworld*. Técnicamente esta etiqueta define el *nombre de nuestra ruta*
 
 También notará que nuestro frontName coincide con nuestro nombre de módulo. Es una convención suelta que los nombres frontales coincidan con los nombres de los módulos, pero no es un requisito. En sus propios módulos, probablemente sea mejor usar un nombre de ruta que sea una combinación del nombre del módulo y el nombre del paquete para evitar posibles colisiones de espacio de nombres.
 
