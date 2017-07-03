@@ -53,11 +53,11 @@ Mas adelante tocaremos cada parte de esta solicitud, pero por ahora estamos inte
 -------------------------------
 ## Hola mundo
 
-Basta de teoría, es hora de Hello World. Iban a
+Basta de teoría, es hora de Hello World. Aquí vamos:
 
-1. Crear un módulo Hello World en el sistema Magento
-2. Configure este módulo con rutas
-3. Crear controlador (es) de acción para nuestras rutas
+1. Crea un módulo Hello World en el sistema Magento
+2. Configura este módulo con rutas
+3. Creaa controlador(es) de acción para estas rutas
 
 ### Crear Módulo Hola mundo
 
@@ -72,7 +72,7 @@ app/code/local/Magentotutorial/Helloworld/Model
 app/code/local/Magentotutorial/Helloworld/sql
 </pre></code>
 
-A continuación, cree un archivo de configuración para el módulo (en path `app/code/local/Magentotutorial/Helloworld/etc/config.xml`):
+A continuación, crea un archivo de configuración para el módulo en `app/code/local/Magentotutorial/Helloworld/etc/config.xml`:
 
 ```xml
 <config>    
@@ -84,7 +84,7 @@ A continuación, cree un archivo de configuración para el módulo (en path `app
 </config>
 ```
 
-A continuación, cree un archivo para activar el módulo (en la aplicación de ruta de acceso `app/etc/modules/Magentotutorial_Helloworld.xml`):
+A continuación, cree un archivo para activar el módulo en `app/etc/modules/Magentotutorial_Helloworld.xml`:
 
 ```xml
 <config>
@@ -97,19 +97,18 @@ A continuación, cree un archivo para activar el módulo (en la aplicación de r
 </config>
 ```
 
-Finalmente, aseguramos que el módulo está activo:
+Finalmente, nos aseguramos que el módulo está activo:
 
-1. Borre la caché de Magento.
-2. En Magento Admin, vaya a System-> Configuration-> Advanced.
-3. Expanda "Desactivar salida de módulos" (si no lo está).
-4. Asegúrese de que Magentotutorial_Helloworld aparece.
+1. Borra la caché de Magento.
+2. En Magento Admin, ve a **System-> Configuration-> Advanced**.
+3. Expande "Desactivar salida de módulos".
+4. Asegúrate que `Magentotutorial_Helloworld` aparece.
 
 ### Configurando Rutas
 
-A continuación, vamos a configurar una ruta. Una ruta convertirá una URL en un controlador de acciones y un método. A diferencia de otros sistemas PHP MVC basados en convenciones, con Magento necesitas definir explícitamente una ruta en la configuración global de Magento.
+A continuación, vamos a configurar una ruta. Una ruta convertirá una URL en un controlador de acción y un método. A diferencia de otros sistemas PHP MVC basados en convenciones, con Magento necesitas definir explícitamente una ruta en la configuración global de Magento.
 
-En el archivo config.xml (en la ruta de acceso app / code / local / Magentotutorial / Helloworld / etc / config.xml), agregue la siguiente sección:
-
+En el archivo `config.xml` en la ruta de acceso `app/code/local/Magentotutorial/Helloworld/etc/config.xml`, agregue la siguiente sección:
 
 ```xml
 <config>    
@@ -131,11 +130,11 @@ En el archivo config.xml (en la ruta de acceso app / code / local / Magentotutor
 
 Tenemos una gran cantidad de terminología nueva aquí, vamos a desglosarla.
 
-### ¿Que es <frontend>?
+### ¿Que es `<frontend>`?
 
-La etiqueta <frontend> se refiere a un área Magento. Por ahora, piensa en Areas como aplicaciones individuales de Magento. El "frontend" Área es el público frente a la aplicación Magento carrito de la compra. El área "admin" es la aplicación de la consola administrativa privada. La "instalación" Área es la aplicación que se utiliza para ejecutar a pesar de instalar Magento la primera vez.
+La etiqueta <frontend> se refiere a un área Magento. Por ahora, piensa en Areas como aplicaciones individuales de Magento. El Área "frontend" es cara visible de la aplicación carrito de compra Magento. El Área "admin" es la aplicación de la parte administrativa privada. El Área "instalación" es la aplicación que se utiliza para instalar Magento la primera vez.
 
-### ¿Por qué las etiquetas <routers> si estamos configurando rutas individuales?
+### ¿Por qué hay una etiqueta <routers> si estamos configurando rutas individuales?
 
 Hay una cita famosa sobre la informática, a menudo atribuida a Phil Karlton:
 
