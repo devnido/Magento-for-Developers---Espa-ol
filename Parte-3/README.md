@@ -134,7 +134,7 @@ Tenemos una gran cantidad de terminología nueva aquí, vamos a desglosarla.
 
 La etiqueta <frontend> se refiere a un área Magento. Por ahora, piensa en Areas como aplicaciones individuales de Magento. El Área "frontend" es cara visible de la aplicación carrito de compra Magento. El Área "admin" es la aplicación de la parte administrativa privada. El Área "instalación" es la aplicación que se utiliza para instalar Magento la primera vez.
 
-### ¿Por qué hay una etiqueta <routers> si estamos configurando rutas individuales?
+### ¿Por qué hay una etiqueta `<routers>` si estamos configurando rutas individuales?
 
 Hay una cita famosa sobre la informática, a menudo atribuida a Phil Karlton:
 
@@ -142,7 +142,7 @@ Hay una cita famosa sobre la informática, a menudo atribuida a Phil Karlton:
 
 Magento, al igual que todos los grandes sistemas, sufre el problema de nombrar en espadas. Encontrarás que hay muchos lugares en la configuración global, y el sistema en general, donde las convenciones de nomenclatura parecen poco intuitivas o incluso ambiguas. Este es uno de esos lugares. A veces, la etiqueta <routers> incluirá información de configuración sobre enrutadores, otras veces incluirá información de configuración sobre los objetos del enrutador real que hacen el enrutamiento. Esto va a parecer contra intuitivo al principio, pero a medida que empiece a trabajar con Magento cada vez más, comenzará a entender su visión del mundo un poco mejor. (O, en las palabras de Han Solo, "Hey, confía en mí!").
 
-### ¿Que es <frontName>?
+### ¿Que es `<frontName>`?
 
 Cuando un enrutador analiza una URL, se separa como sigue
 
