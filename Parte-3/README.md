@@ -198,4 +198,100 @@ Los controladores de acción deben colocarse en la carpeta de `controllers` (c m
 
 ¿Recuerdas la etiqueta `<module>` en `config.xml`?
 
-<pre>`<module>Magentotutorial_Helloworld`</pre>
+<pre>`<module>`Magentotutorial_Helloworld</pre>
+
+El nombre de un controlador deberá
+
+1. Comienzar con esta cadena especificada en config.xml (Magentotutorial_Helloworld)
+2. Continuar seguido por un guión bajo (Magentotutorial_Helloworld_)
+3. Luego seguirá el nombre de Action Controller (Magentotutorial_Helloworld_Index)
+4. Y finalmente, la palabra "Controller" (Magentotutorial_Helloworld_IndexController)
+
+Todos los controladores de acción necesitan Mage_Core_Controller_Front_Action como padre (heredan).
+
+### ¿Qué es ese absurdo index/index ?
+
+Como se mencionó anteriormente, las URL de Magento se enrutan (de forma predeterminada) de la siguiente manera
+
+<pre>http://example.com/frontName/actionControllerName/actionMethod/</pre>
+
+Así que en la URL
+
+<pre>http://example.com/helloworld/index/index</pre>
+
+La parte de la URI "helloworld" es el *frontName*, que es seguido por "index" (El nombre de controlador de acción), que es seguido por otro "index", que es el nombre del método de acción que se llamará. (Una Acción Index llamará al método public function `**index**Action() {...}`.
+
+Si una URL está incompleta, Magento utiliza "index" como predeterminado, por lo que las siguientes URL son equivalentes.
+
+<pre>
+http://example.com/helloworld/index
+http://example.com/helloworld
+</pre>
+
+Si teníamos una URL que se veía así
+
+<pre>http://example.com/checkout/cart/add</pre>
+
+Magento lo haría así
+
+1. Consultaría la configuración global para encontrar el módulo que se utilizará para la comprobación de frontName (Mage_Checkout)
+2. Luego buscaría Action Controller "Cart" (Mage_Checkout_CartController)
+3. Por último, Llamaría al método addAction en el Action Controller "Cart"
+
+### Otros trucos del controlador de acción
+
+Intentemos agregar un método no predeterminado a nuestro controlador de acciones. Agregue el siguiente código a `IndexController.php`
+
+```php
+public function goodbyeAction() {
+    echo 'Goodbye World!';
+}
+```
+
+Y luego visita la URL para probarlo:
+
+<pre>http://example.com/helloworld/index/goodbye </pre>
+
+Debido a que estamos extendiendo la clase Mage_Core_Controller_Front_Action, obtenemos algunos métodos gratis. Por ejemplo, los elementos URL adicionales se analizan automáticamente en pares **clave/valor**. Agrega el siguiente método a tu controlador de acciones.
+
+```php
+public function paramsAction() {
+    echo '
+';            
+    foreach($this->getRequest()->getParams() as $key=>$value) {
+        echo '
+Param: '.$key.'
+';
+        echo '
+Value: '.$value.'
+';
+    }
+    echo '
+';
+}
+```
+
+Y visite la siguiente URL
+
+<pre>http://example.com/helloworld/index/params?foo=bar&baz=eof</pre>
+
+Deberías ver cada parámetro y valor impresos.
+
+Finalmente, ¿qué haríamos si quisiéramos una URL que respondiera en
+
+<pre>http://example.com/helloworld/messages/goodbye</pre>
+
+Aquí el nombre de nuestro controlador de acciones es "messages", por lo que crearíamos un archivo en
+
+<pre>app/code/local/Magentotutorial/Helloworld/controllers/MessagesController.php</pre>
+
+Con un controlador de acción llamado **Magentotutorial_Helloworld_MessagesController** y un método de acción que parecía algo así
+
+```php
+public function goodbyeAction()         
+{
+    echo 'Another Goodbye';
+}
+```
+
+Y eso, en pocas palabras, es cómo Magento implementa la parte del controlador de MVC. Aunque es un poco más complicado que otros frameworks MVC de PHP, es un sistema altamente flexible que te permitirá construir casi cualquier estructura de URL que quieras.
