@@ -192,4 +192,10 @@ Podrás ver una página en blanco con el texto "Hello World". ¡Enhorabuena, has
 
 ### ¿A dónde van los controladores de acción?
 
-Los controladores de acción deben colocarse en la carpeta de los `controladores` del módulo (c minúscula). Aquí es donde el sistema los buscará.
+Los controladores de acción deben colocarse en la carpeta de `controllers` (c minúscula) del módulo. Aquí es donde el sistema los buscará.
+
+### ¿Cómo deben nombrarse los Controladores de Acción?
+
+¿Recuerdas la etiqueta `<module>` en `config.xml`?
+
+<pre>`<module>Magentotutorial_Helloworld`</pre>
