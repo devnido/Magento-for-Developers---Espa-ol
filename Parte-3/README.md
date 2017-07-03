@@ -166,7 +166,7 @@ Un último paso por delante, y tendremos nuestro controlador de acción. Cree un
 
 <pre><code>app/code/local/Magentotutorial/Helloworld/controllers/IndexController.php</code></pre>
 
-Que contiene lo siguiente
+Que contiene el siguiente código
 
 ```php
 <?php
@@ -177,18 +177,18 @@ class Magentotutorial_Helloworld_IndexController extends Mage_Core_Controller_Fr
 }
 ```
 
-Borre la caché de configuración y cargue la siguiente URL
+Borra la caché de configuración y carga la siguiente URL
 
-<code><pre>http://example.com/helloworld/index/index</pre></code>
+<pre><code>http://example.com/helloworld/index/index</code></pre>
 
 También deberías poder cargar
 
-<code><pre>
+<pre><code>
 http://example.com/helloworld/index/
 http://example.com/helloworld/
-</pre></code>
+</code></pre>
 
-Debería ver una página en blanco con el texto "Hello World". ¡Enhorabuena, has configurado tu primer controlador de Magento!
+Podrás ver una página en blanco con el texto "Hello World". ¡Enhorabuena, has configurado tu primer controlador de Magento!
 
 ### ¿A dónde van los controladores de acción?
 
