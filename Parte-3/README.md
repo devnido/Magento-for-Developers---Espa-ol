@@ -132,7 +132,7 @@ Tenemos una gran cantidad de terminología nueva aquí, vamos a desglosarla.
 
 ### ¿Que es `<frontend>`?
 
-La etiqueta <frontend> se refiere a un área Magento. Por ahora, piensa en Areas como aplicaciones individuales de Magento. El Área "frontend" es cara visible de la aplicación carrito de compra Magento. El Área "admin" es la aplicación de la parte administrativa privada. El Área "instalación" es la aplicación que se utiliza para instalar Magento la primera vez.
+La etiqueta `<frontend>` se refiere a un área Magento. Por ahora, piensa en Areas como aplicaciones individuales de Magento. El Área "frontend" es cara visible de la aplicación carrito de compra Magento. El Área "admin" es la aplicación de la parte administrativa privada. El Área "instalación" es la aplicación que se utiliza para instalar Magento la primera vez.
 
 ### ¿Por qué hay una etiqueta `<routers>` si estamos configurando rutas individuales?
 
