@@ -144,27 +144,27 @@ Magento, al igual que todos los grandes sistemas, sufre el problema de nombrar e
 
 ### ¿Que es `<frontName>`?
 
-Cuando un enrutador analiza una URL, se separa como sigue
+Cuando un enrutador analiza una URL, se separa como se muestra a continuación
 <pre><code>http://example.com/frontName/actionControllerName/actionMethod/</code></pre>
-Por lo tanto, al definir un valor de "hello world" en las etiquetas de `<frontName>`, le decimos a Magento que queremos que el sistema responda a las URLs en forma de
+Por lo tanto, al definir un valor de "helloworld" en las etiquetas de `<frontName>`, le decimos a Magento que queremos que el sistema responda a las URLs en forma de
 <pre><code>`http://example.com/helloworld/*`</code></pre>
 Muchos desarrolladores nuevos en Magento confunden este nombre con el objeto Front Controller. No són la misma cosa. El *frontName* pertenece únicamente al enrutamiento.
 
 ### ¿Para qué sirve la etiqueta `<helloworld>`?
 
-Esta etiqueta debe ser la versión en minúscula del nombre del módulo. Nuestro nombre del módulo es **Helloworld**, esta etiqueta es *helloworld*. Técnicamente esta etiqueta define el *nombre de nuestra ruta*
+Esta etiqueta debe ser la versión en minúscula del nombre del módulo. Nuestro nombre del módulo es **Helloworld**, entonces esta etiqueta es *helloworld*. Técnicamente esta etiqueta define el *nombre de nuestra ruta*
 
-También notará que nuestro frontName coincide con nuestro nombre de módulo. Es una convención suelta que los nombres frontales coincidan con los nombres de los módulos, pero no es un requisito. En sus propios módulos, probablemente sea mejor usar un nombre de ruta que sea una combinación del nombre del módulo y el nombre del paquete para evitar posibles colisiones de espacio de nombres.
+También notarás que nuestro *frontName* coincide con nuestro nombre de módulo. Es un caso aislado que los *frontName* coincidan con los nombres de los módulos, pero no es un requisito. En tus propios módulos, probablemente sea mejor usar un nombre de ruta que sea una combinación del nombre del módulo y el nombre del paquete para evitar posibles colisiones de espacio de nombres.
 
-### ¿Para qué es <module> Magentotutorial_Helloworld </module>?
+### ¿Para qué es `<module>Magentotutorial_Helloworld</module>`?
 
-Esta etiqueta de módulo debe ser el nombre completo de su módulo, incluyendo su nombre de paquete / espacio de nombres. El sistema lo usará para localizar los archivos del controlador.
+Esta etiqueta de módulo debe ser el nombre completo de su módulo, incluyendo su Packagename/Namespace. El sistema lo usará para localizar los archivos del controlador.
 
-### Crear controlador (es) de acción para nuestras rutas
+### Crear controlador(es) de acción para nuestras rutas
 
 Un último paso por delante, y tendremos nuestro controlador de acción. Cree un archivo en
 
-<code><pre>app/code/local/Magentotutorial/Helloworld/controllers/IndexController.php</pre></code>
+<pre><code>app/code/local/Magentotutorial/Helloworld/controllers/IndexController.php</code></pre>
 
 Que contiene lo siguiente
 
